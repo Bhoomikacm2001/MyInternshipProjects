@@ -1,0 +1,77 @@
+import time
+
+def introduction():
+    print("Welcome to the Text Adventure Game!")
+    time.sleep(1)
+    print("You find yourself in a mysterious forest...")
+    time.sleep(1)
+
+def make_choice(choices):
+    print("\nChoose your action:")
+    for i, choice in enumerate(choices, 1):
+        print(f"{i}. {choice}")
+
+    while True:
+        try:
+            choice = int(input("Enter the number of your choice: "))
+            if 1 <= choice <= len(choices):
+                return choice
+            else:
+                print("Invalid choice. Please enter a valid number.")
+        except ValueError:
+            print("Invalid input. Please enter a number.")
+
+def forest_path():
+    print("\nYou encounter a fork in the path.")
+    time.sleep(1)
+    choices = ["Take the left path", "Take the right path"]
+    choice = make_choice(choices)
+
+    if choice == 1:
+        print("\nYou follow the left path...")
+        time.sleep(1)
+        print("You discover a hidden treasure chest!")
+        return "treasure"
+    else:
+        print("\nYou follow the right path...")
+        time.sleep(1)
+        print("You encounter a group of bandits!")
+        return "bandits"
+
+def treasure_scenario():
+    print("\nYou open the treasure chest and find a magic amulet.")
+    time.sleep(1)
+    print("The amulet glows and transports you to a magical realm!")
+    time.sleep(1)
+    print("Congratulations! You've found a secret ending.")
+
+def bandits_scenario():
+    print("\nThe bandits demand your valuables.")
+    time.sleep(1)
+    choices = ["Fight the bandits", "Give them your belongings"]
+    choice = make_choice(choices)
+
+    if choice == 1:
+        print("\nYou choose to fight the bandits...")
+        time.sleep(1)
+        print("After a fierce battle, you emerge victorious!")
+        time.sleep(1)
+        print("Congratulations! You've found a heroic ending.")
+    else:
+        print("\nYou choose to give them your belongings...")
+        time.sleep(1)
+        print("The bandits leave, and you continue your journey.")
+        time.sleep(1)
+        print("Congratulations! You've found a peaceful ending.")
+
+def main():
+    introduction()
+
+    scenario = forest_path()
+    if scenario == "treasure":
+        treasure_scenario()
+    elif scenario == "bandits":
+        bandits_scenario()
+
+if __name__ == "__main__":
+    main()
